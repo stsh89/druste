@@ -4,4 +4,3 @@ version = "0.1.0"
 authors = ["Stanislav Shandyga <stanislavshandyga@gmail.com>"]
 
 [dependencies]
-actix-web = "0.7"

@@ -1,29 +1,11 @@
-extern crate actix_web;
-
-use actix_web::{server, App, HttpRequest};
-use std::env;
-
-fn index(_req: &HttpRequest) -> &'static str {
-    "Hello world!\n"
-}
+use std::net::TcpListener;
 
 fn main() {
-    let port = match env::var("PORT") {
-        Ok(val) => val,
-        Err(_) => "3000".to_string(),
-    };
+    let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
 
-    let host = match env::var("HOST") {
-        Ok(val) => val,
-        Err(_) => "localhost".to_string(),
-    };
+    for stream in listener.incoming() {
+        let stream = stream.unwrap();
 
-    let addr = format!("{}:{}", host, port);
-
-    println!("Server is running on {}", addr);
-
-    server::new(|| App::new().resource("/", |r| r.f(index)))
-        .bind(addr)
-        .unwrap()
-        .run();
+        println!("Connection established!");
+    }
 }
