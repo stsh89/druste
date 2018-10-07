@@ -1,0 +1,6 @@
+[package]
+name = "druste"
+version = "0.1.0"
+authors = ["Stanislav Shandyga <stanislavshandyga@gmail.com>"]
+
+[dependencies]
