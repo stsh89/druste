@@ -1,3 +1,4 @@
+use std::io::prelude::*;
 use std::net::TcpListener;
 use std::net::TcpStream;
 
@@ -10,6 +11,8 @@ fn main() {
     }
 }
 
-fn handle_connection(_stream: TcpStream) {
-    println!("Connection esteblished!");
+fn handle_connection(mut stream: TcpStream) {
+    let mut buffer = [0; 512];
+    stream.read(&mut buffer).unwrap();
+    println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
 }
